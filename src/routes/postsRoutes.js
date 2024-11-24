@@ -1,6 +1,6 @@
 import express from "express"; // Importa o framework Express para criar a aplicação web
 import multer from "multer"; // Importa o Multer para lidar com uploads de arquivos
-import { listarPosts, postarNovoPost, uploadImagem, atualizarNovoPost } from "../controllers/postsController.js"; // Importa as funções controladoras para lidar com a lógica dos posts
+import { listarPosts, postarNovoPost, uploadImagem, atualizarNovoPost, deletarNovoPost } from "../controllers/postsController.js"; // Importa as funções controladoras para lidar com a lógica dos posts
 import cors from "cors";
 
 const corsOptions = {
@@ -27,6 +27,7 @@ const upload = multer({ storage: storage });
 const routes = (app) => {
   // Permite que o servidor interprete corpos de requisições no formato JSON
   app.use(express.json());
+  
   app.use(cors(corsOptions));
 
   // Rota para recuperar uma lista de todos os posts
@@ -39,6 +40,11 @@ const routes = (app) => {
   app.post("/upload", upload.single("imagem"), uploadImagem); // Chama a função controladora para processamento da imagem
   
   app.put("/upload/:id", atualizarNovoPost)
+
+  app.delete("/upload/:id", deletarNovoPost)
+
 };
+
+  
 
 export default routes;
