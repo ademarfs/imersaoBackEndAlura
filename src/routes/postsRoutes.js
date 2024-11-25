@@ -39,12 +39,12 @@ const routes = (app) => {
   // Rota para upload de imagens (assumindo uma única imagem chamada "imagem")
   app.post("/upload", upload.single("imagem"), uploadImagem); // Chama a função controladora para processamento da imagem
   
+  // Rota para atualizar post existente
   app.put("/upload/:id", atualizarNovoPost)
 
-  app.delete("/upload/:id", deletarNovoPost)
+  // Rota para deletar posts
+  app.delete("/delete/:id", deletarNovoPost)
 
 };
-
-  
 
 export default routes;
